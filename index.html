@@ -8,35 +8,41 @@
   <title>Online Library</title>
 </head>
 <body>
-  <header>
-    <h1>Library</h1>
-  </header>
-  <hr>
+  <div class="header-container">
+    <header>
+      <h1>Library</h1>
+    </header>
+  </div>
   <main>
-    <button class="add-book">Add Book</button>
+    <div class="add-book-container">
+      <button class="add-book-btn">Add Book</button>
+    </div>
     <div class="books-grid">
-      <div>
-        <h3 class="book-title">lalalala</h3>
-        <h3 class="book-author">grrmartin</h3>
-        <h3 class="book-pages">234</h3>
-        <button class="toggle-read">Not read</button>
-        <button class="book-remove">Remove</button>
-      </div>
-      <template class="book-card">
-        <h3 class="book-title"></h3>
-        <h3 class="book-author"></h3>
-        <h3 class="book-pages"></h3>
-        <button class="toggle-read"></button>
-        <button class="book-remove"></button>
+      <template id="card-template">
+        <div class="book-card">
+          <h3 class="book-title"></h3>
+          <h3 class="book-author"></h3>
+          <h3 class="book-pages"></h3>
+          <div class="card-btn">
+            <button id="toggle-read">Read</button>
+            <button class="book-remove">Remove</button>
+          </div>
+        </div>
       </template>
     </div>
   </main>
   <script>
-    
+    const d = document;
+    const $bookShelf = d.querySelector(".books-grid"),
+          $btnAdd = d.querySelector(".add-book-btn"),
+          $btnRemove = d.querySelector(".book-remove"),
+          $template = d.getElementById("card-template").content,
+          $fragment = d.createDocumentFragment();
+
     let myLibrary = [
         {
           "id": "1",
-          "title": "El nombre del veinto",
+          "title": "El nombre del viento",
           "author": "Patrick Rothfuss",
           "pages": "871"
         },
@@ -45,16 +51,59 @@
           "title": "A game of thrones",
           "author": "GRR Martin",
           "pages": "950"
+        },
+        {
+          "id": "3",
+          "title": "The Shining",
+          "author": "Stephen King",
+          "pages": "850"
+        },
+        {
+        "id": "3",
+        "title": "The Shining",
+        "author": "Stephen King",
+        "pages": "850"
+        },
+        {
+        "id": "3",
+        "title": "The Shining",
+        "author": "Stephen King",
+        "pages": "850"
         }
       ];
 
       function Book() {
 
       };
+      
+      let templateCard = "";
 
       function addBookToLibrary() {
+        myLibrary.forEach(el => {
+          // console.log(el.title);
+          $template.querySelector(".book-title").textContent = el.title;
+          $template.querySelector(".book-author").textContent = el.author;
+          $template.querySelector(".book-pages").textContent = el.pages;
+          $template.getElementById("toggle-read").dataset.id = el.id;
+          $template.querySelector(".book-remove").dataset.id = el.id;
 
+          let $clone = d.importNode($template, true);
+          $fragment.appendChild($clone);
+        });
+
+        $bookShelf.appendChild($fragment);
       }
+      addBookToLibrary();
+
+      const $toggleRead = d.getElementById("toggle-read");
+
+      $toggleRead.addEventListener("click", e => {
+        if($toggleRead.textContent === "Read"){
+          return $toggleRead.textContent = "Not Read";
+        } else {
+          return $toggleRead.textContent = "Read";
+        }
+      });
   </script>
 </body>
 </html>
