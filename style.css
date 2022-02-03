@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+html {
+  min-height: 100%;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  background-color: hsl(223, 33%, 96%);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin: 30px;
+  padding: 10px;
+  border: solid black 2px;
+}
+hr {
+  border-top: 1px solid black;
+}
+
+.add-book {
+  background: hsl(221, 74%, 32%);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  margin: 25px;
+  padding: 15px 8px;
+  font-size: 2rem;
+}
+
+.books-grid {
+  display: flex;
+  border: solid black 2px;
+}
