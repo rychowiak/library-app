@@ -4,17 +4,22 @@
   --hue-color: 20; /*Purple 250 - Green 142 - Blue 230 - Pink 340  Red 0*/
 
   --first-color: hsl(var(--hue-color), 69%, 61%);
-  --first-alpha-color: hsl(var(--hue-color), 69%, 55%);
-  --first-color-alt: hsl(var(--hue-color), 57%, 53%);
   --first-color-light: hsl(var(--hue-color), 92%, 85%);
-  --title-color: hsl(var(--hue-color), 8%, 15%);
-  --text-color: hsl(var(--hue-color), 8%, 45%);
+  --card-color: hsl(var(--hue-color), 78%, 80%);
+  --card-color-border: hsl(var(--hue-color), 100%, 50%);
 
+  --title-color: hsl(var(--hue-color), 18%, 15%);
+  --text-color: hsl(var(--hue-color), 5%, 15%);
+  --grey: hsl(280, 30%, 94%);
+
+  --btn-color-blue: hsl(214, 84%, 56%);
   --btn-color: hsl(var(--hue-color), 100%, 48%);
   --btn-color-alt: hsl(var(--hue-color), 80%, 48%);
-  --card-color: hsl(var(--hue-color), 78%, 67%);
+
+  --width-50: 50%;
 }
 html {
+  color: var(--text-color);
   min-height: 100%;
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
@@ -31,8 +36,77 @@ html {
 div.header-container {
   background-color: var(--card-color);
 }
+/******* Modal window ******/
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 20rem;
+  padding: 15px;
+  background-color: var(--grey);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px black;
+  transform: translate(-50%, -50%) scale(0);
+  text-align: left;
+}
+.modal.is-active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal-header {
+  text-align: center;
+  padding: 1.25rem;
+}
+.modal-header > h1 {
+  font-size: 1.5rem;
+}
 
+.modal-close {
+  float: right;
+  font-size: 1.5rem;
+}
+
+.modal-content {
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+}
+button,
+input {
+  border: none;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.modal-content > div > input {
+  width: 100%;
+  margin: 8px;
+  padding: 10px;
+  font-size: 1.5rem;
+}
+button[type="submit"] {
+  width: var(--width-50);
+  padding: 10px 20px;
+  background-color: var(--btn-color-blue);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.overlay.active {
+  display: block;
+}
+
+/**** Header ****/
 header {
+  color: var(--title-color);
+  background-color: var(--first-color);
   text-align: center;
   font-size: 2rem;
   text-transform: uppercase;
@@ -72,7 +146,7 @@ header {
   padding: 2px;
   border: 1px solid;
   border-radius: 10px;
-  border-left: 2rem groove hsl(16, 100%, 50%);
+  border-left: 2rem groove var(--card-color-border);
   background-color: var(--card-color);
   display: flex;
   flex-direction: column;
@@ -91,7 +165,7 @@ header {
 }
 .card-btn > button {
   top: 0;
-  width: 50%;
+  width: var(--width-50);
   padding: 10px 8px;
   cursor: pointer;
   border: none;

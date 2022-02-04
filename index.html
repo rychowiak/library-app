@@ -17,6 +17,26 @@
     <div class="add-book-container">
       <button class="add-book-btn">Add Book</button>
     </div>
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-close">&times;</span>
+        <h1>Add New Book</h1>
+      </div>
+      <hr>
+      <div class="modal-content">
+        <div class="input-title">
+          <input type="text" placeholder="Title">
+        </div>
+        <div class="input-author">
+          <input type="text" placeholder="Author">
+        </div>
+        <div class="input-pages">
+          <input type="number" placeholder="Pages">
+        </div>
+        <button type="submit">Add</button>
+      </div>
+    </div>
+    <div class="overlay"></div>
     <div class="books-grid">
       <template id="card-template">
         <div class="book-card">
@@ -51,34 +71,29 @@
           "title": "A game of thrones",
           "author": "GRR Martin",
           "pages": "950"
-        },
-        {
-          "id": "3",
-          "title": "The Shining",
-          "author": "Stephen King",
-          "pages": "850"
-        },
-        {
-        "id": "3",
-        "title": "The Shining",
-        "author": "Stephen King",
-        "pages": "850"
-        },
-        {
-        "id": "3",
-        "title": "The Shining",
-        "author": "Stephen King",
-        "pages": "850"
         }
       ];
 
-      function Book() {
-
+      function Book(title, author, pages) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
       };
+
       
-      let templateCard = "";
+      Book.prototype.info = function(){
+        return (`${this.title} by ${this.author}, ${this.pages} pages`)
+      };
+
+      const book3 = new Book("The Shining", "Stephen King", "850");
+      console.log(book3.info());
+
+      
 
       function addBookToLibrary() {
+
+
+
         myLibrary.forEach(el => {
           // console.log(el.title);
           $template.querySelector(".book-title").textContent = el.title;
