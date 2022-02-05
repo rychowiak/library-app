@@ -9,13 +9,28 @@ const $bookShelf = d.querySelector(".books-grid"),
       $fragment = d.createDocumentFragment(),
       $addBookForm = d.querySelector(".form-add");
 
-const $toggleRead = d.getElementById("toggle-read");
+      /* toggle read/notRead btn */
+d.addEventListener("click", e => {
+  const $toggleRead = d.querySelector(".toggle-read");
+  if(e.target.matches(".toggle-read")){
+    if ($toggleRead.textContent === "Read") {
+      return $toggleRead.textContent = "Not Read";
+    } else {
+      return $toggleRead.textContent = "Read";
+    }
+  };
+  if(e.target.matches(".add-book-btn")){
+    $modal.classList.add("is-active");
+    $overlay.classList.add("active");
+    return;
+  };
+  if(e.target.matches(".modal-close")){
+    $modal.classList.remove("is-active");
+    $overlay.classList.remove("active");
+    $addBookForm.reset();
+  };
+  if(e.target.matches(".book-remove")){
 
-$toggleRead.addEventListener("click", e => {
-  if ($toggleRead.textContent === "Read") {
-    return $toggleRead.textContent = "Not Read";
-  } else {
-    return $toggleRead.textContent = "Read";
   }
 });
 
@@ -23,6 +38,7 @@ let myLibrary = [];
 let newArr = [];
 let bookObj = {};
 
+/* form submit */
 $addBookForm.addEventListener("submit", e => {
   const $inputTitle = d.getElementById("input-title").value,
     $inputAuthor = d.getElementById("input-author").value,
@@ -31,6 +47,7 @@ $addBookForm.addEventListener("submit", e => {
 
   e.preventDefault();
   myLibrary.push({title:$inputTitle, author:$inputAuthor, pages:$inputPages});
+  $addBookForm.reset();
 
   $modal.classList.remove("is-active");
   $overlay.classList.remove("active");
@@ -47,7 +64,7 @@ function addBookToLibrary() {
       $template.querySelector(".book-title").textContent = el.title;
       $template.querySelector(".book-author").textContent = el.author;
       $template.querySelector(".book-pages").textContent = el.pages;
-      $template.getElementById("toggle-read").dataset.id = el.id;
+      $template.querySelector(".toggle-read").dataset.id = el.id;
       $template.querySelector(".book-remove").dataset.id = el.id;
 
       let $clone = d.importNode($template, true);
@@ -58,11 +75,3 @@ function addBookToLibrary() {
   }
   return;
 }
-      
-
-      
-
-$btnAdd.addEventListener("click", e => {
-  $modal.classList.add("is-active");
-  $overlay.classList.add("active");
-});

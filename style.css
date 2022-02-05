@@ -64,6 +64,7 @@ div.header-container {
 .modal-close {
   float: right;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .modal-content {
@@ -143,6 +144,7 @@ header {
 
 .book-card {
   min-width: 25%;
+  height: 20%;
   margin: 15px;
   padding: 2px;
   border: 1px solid;
@@ -154,20 +156,21 @@ header {
   justify-content: space-between;
 }
 .book-card > * {
-  height: auto;
+  /* height: auto; */
   font-size: 1.5rem;
-  text-align: center;
-  margin: 15px;
+  text-align: justify;
+  margin: 5px;
   padding: 10px 15px;
 }
 .card-btn {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .card-btn > button {
   top: 0;
-  width: var(--width-50);
-  padding: 10px 8px;
+  width: 135px;
+  padding: 10px 14px;
   cursor: pointer;
   border: none;
   border-radius: 15px;
