@@ -77,13 +77,13 @@ input {
   text-decoration: none;
   border-radius: 10px;
 }
-.modal-content > div > input {
+.modal-content > form > input {
   width: 100%;
   margin: 8px;
   padding: 10px;
   font-size: 1.5rem;
 }
-button[type="submit"] {
+input[type="submit"] {
   width: var(--width-50);
   padding: 10px 20px;
   background-color: var(--btn-color-blue);
@@ -99,7 +99,7 @@ button[type="submit"] {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-div.overlay.active {
+.overlay.active {
   display: block;
 }
 
@@ -134,6 +134,7 @@ header {
   font-size: 2rem;
 }
 
+/**** Books grid ****/
 .books-grid {
   display: flex;
   justify-content: center;
@@ -141,7 +142,7 @@ header {
 }
 
 .book-card {
-  width: 25%;
+  min-width: 25%;
   margin: 15px;
   padding: 2px;
   border: 1px solid;

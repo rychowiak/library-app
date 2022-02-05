@@ -24,16 +24,12 @@
       </div>
       <hr>
       <div class="modal-content">
-        <div class="input-title">
-          <input type="text" placeholder="Title">
-        </div>
-        <div class="input-author">
-          <input type="text" placeholder="Author">
-        </div>
-        <div class="input-pages">
-          <input type="number" placeholder="Pages">
-        </div>
-        <button type="submit">Add</button>
+        <form class="form-add">
+          <input type="text" id="input-title" placeholder="Title" />
+          <input type="text" id="input-author" placeholder="Author" />
+          <input type="number" id="input-pages" placeholder="Pages" />
+          <input type="submit" value="Add" class="add-new-book">
+        </form>
       </div>
     </div>
     <div class="overlay"></div>
@@ -51,74 +47,6 @@
       </template>
     </div>
   </main>
-  <script>
-    const d = document;
-    const $bookShelf = d.querySelector(".books-grid"),
-          $btnAdd = d.querySelector(".add-book-btn"),
-          $btnRemove = d.querySelector(".book-remove"),
-          $template = d.getElementById("card-template").content,
-          $fragment = d.createDocumentFragment();
-
-    let myLibrary = [
-        {
-          "id": "1",
-          "title": "El nombre del viento",
-          "author": "Patrick Rothfuss",
-          "pages": "871"
-        },
-        {
-          "id": "2",
-          "title": "A game of thrones",
-          "author": "GRR Martin",
-          "pages": "950"
-        }
-      ];
-
-      function Book(title, author, pages) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-      };
-
-      
-      Book.prototype.info = function(){
-        return (`${this.title} by ${this.author}, ${this.pages} pages`)
-      };
-
-      const book3 = new Book("The Shining", "Stephen King", "850");
-      console.log(book3.info());
-
-      
-
-      function addBookToLibrary() {
-
-
-
-        myLibrary.forEach(el => {
-          // console.log(el.title);
-          $template.querySelector(".book-title").textContent = el.title;
-          $template.querySelector(".book-author").textContent = el.author;
-          $template.querySelector(".book-pages").textContent = el.pages;
-          $template.getElementById("toggle-read").dataset.id = el.id;
-          $template.querySelector(".book-remove").dataset.id = el.id;
-
-          let $clone = d.importNode($template, true);
-          $fragment.appendChild($clone);
-        });
-
-        $bookShelf.appendChild($fragment);
-      }
-      addBookToLibrary();
-
-      const $toggleRead = d.getElementById("toggle-read");
-
-      $toggleRead.addEventListener("click", e => {
-        if($toggleRead.textContent === "Read"){
-          return $toggleRead.textContent = "Not Read";
-        } else {
-          return $toggleRead.textContent = "Read";
-        }
-      });
-  </script>
+  <script src="/script.js"></script>
 </body>
 </html>
