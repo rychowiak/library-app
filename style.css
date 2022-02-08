@@ -136,7 +136,7 @@ header {
 }
 
 /**** Books grid ****/
-.books-grid {
+.book-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -156,7 +156,7 @@ header {
   justify-content: space-between;
 }
 .book-card > * {
-  /* height: auto; */
+  min-width: 50%;
   font-size: 1.5rem;
   text-align: justify;
   margin: 5px;
@@ -164,6 +164,8 @@ header {
 }
 .card-btn {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
   gap: 10px;
 }

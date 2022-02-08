@@ -1,4 +1,72 @@
-const d = document;
+// Book Constructor
+function Book(title, author, pages){
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+};
+// Handle UI Tasks
+const myLibrary = [
+  {
+    title: "Book one",
+    author: "John Smith",
+    pages: "123"
+  },
+  {
+    title: "Book two",
+    author: "Jane Doe",
+    pages: "456"
+  },
+  {
+    title: "The Name of The Wind",
+    author: "Patrick Rothfuss",
+    pages: "600"
+  }
+];
+
+const books = myLibrary;
+
+books.forEach((book) => {
+  addBookToLibrary(book);
+});
+
+function addBookToLibrary(book){
+  const $bookList = document.querySelector(".book-list");
+
+  const $card = document.createElement("div");
+  $card.classList.add("book-card");
+
+  $card.innerHTML = `
+  <h3 class="book-title">${book.title}</h3>
+  <h3 class="book-author">${book.author}</h3>
+  <h3 class="book-pages">${book.pages}</h3>
+  <div class="card-btn">
+    <button class="toggle-read">Read</button>
+    <button class="book-remove">Remove</button>
+  </div>
+  `;
+
+  $bookList.appendChild($card);
+};
+
+// Store class: Handle Storage
+
+// Event: Display Books
+document.addEventListener("DOMContentLoaded", addBookToLibrary);
+
+// Event: Add Book
+
+// Event: Remove Book
+
+
+
+
+
+
+
+
+
+
+/* const d = document;
 const $bookShelf = d.querySelector(".books-grid"),
       $btnAdd = d.querySelector(".add-book-btn"),
       $modal = d.querySelector(".modal"),
@@ -7,10 +75,10 @@ const $bookShelf = d.querySelector(".books-grid"),
       $btnRemove = d.querySelector(".book-remove"),
       $template = d.getElementById("card-template").content,
       $fragment = d.createDocumentFragment(),
-      $addBookForm = d.querySelector(".form-add");
+      $addBookForm = d.querySelector(".form-add"); */
 
-      /* toggle read/notRead btn */
-d.addEventListener("click", e => {
+     // /* toggle read/notRead btn */
+/* d.addEventListener("click", e => {
   const $toggleRead = d.querySelector(".toggle-read");
   if(e.target.matches(".toggle-read")){
     if ($toggleRead.textContent === "Read") {
@@ -36,10 +104,10 @@ d.addEventListener("click", e => {
 
 let myLibrary = [];
 let newArr = [];
-let bookObj = {};
+let bookObj = {}; */
 
-/* form submit */
-$addBookForm.addEventListener("submit", e => {
+// /* form submit */
+/* $addBookForm.addEventListener("submit", e => {
   const $inputTitle = d.getElementById("input-title").value,
     $inputAuthor = d.getElementById("input-author").value,
     $inputPages = d.getElementById("input-pages").value;
@@ -55,9 +123,9 @@ $addBookForm.addEventListener("submit", e => {
   console.log(myLibrary);
   addBookToLibrary();
   myLibrary = [];
-});
+}); */
 
-function addBookToLibrary() {
+/* function addBookToLibrary() {
   if(myLibrary.length !== 0){
     myLibrary.forEach(el => {
       // console.log(el.title);
@@ -74,4 +142,4 @@ function addBookToLibrary() {
     $bookShelf.appendChild($fragment);
   }
   return;
-}
+} */
