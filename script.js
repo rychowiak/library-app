@@ -7,23 +7,17 @@ function Book(title, author, pages){
 // Handle UI Tasks
 const myLibrary = [
   {
-    title: "Book one",
-    author: "John Smith",
+    title: "book 1",
+    author: "John Doe",
     pages: "123"
-  },
-  {
-    title: "Book two",
-    author: "Jane Doe",
-    pages: "456"
-  },
-  {
-    title: "The Name of The Wind",
-    author: "Patrick Rothfuss",
-    pages: "600"
+
   }
 ];
 
 const books = myLibrary;
+console.log(books.length);
+if(books.length !== 1){
+}
 
 books.forEach((book) => {
   addBookToLibrary(book);
@@ -31,7 +25,6 @@ books.forEach((book) => {
 
 function addBookToLibrary(book){
   const $bookList = document.querySelector(".book-list");
-
   const $card = document.createElement("div");
   $card.classList.add("book-card");
 
@@ -40,106 +33,74 @@ function addBookToLibrary(book){
   <h3 class="book-author">${book.author}</h3>
   <h3 class="book-pages">${book.pages}</h3>
   <div class="card-btn">
-    <button class="toggle-read">Read</button>
-    <button class="book-remove">Remove</button>
+    <button class="read">Read</button>
+    <button class="remove">Remove</button>
   </div>
   `;
 
   $bookList.appendChild($card);
 };
 
+function deleteBook(el) {
+  if(el.classList.contains("remove")) {
+    el.parentElement.parentElement.remove();
+  }
+};
+
 // Store class: Handle Storage
 
 // Event: Display Books
-document.addEventListener("DOMContentLoaded", addBookToLibrary);
+//document.addEventListener("DOMContentLoaded", addBookToLibrary);
 
-// Event: Add Book
+// Modal Window
+const $modalBtn = document.querySelector(".book-btn-modal");
+const $modal = document.querySelector(".modal");
+const $overlay = document.querySelector(".overlay");
 
-// Event: Remove Book
-
-
-
-
-
-
-
-
-
-
-/* const d = document;
-const $bookShelf = d.querySelector(".books-grid"),
-      $btnAdd = d.querySelector(".add-book-btn"),
-      $modal = d.querySelector(".modal"),
-      $overlay = d.querySelector(".overlay"),
-      $newBook = d.querySelector(".add-new-book"),
-      $btnRemove = d.querySelector(".book-remove"),
-      $template = d.getElementById("card-template").content,
-      $fragment = d.createDocumentFragment(),
-      $addBookForm = d.querySelector(".form-add"); */
-
-     // /* toggle read/notRead btn */
-/* d.addEventListener("click", e => {
-  const $toggleRead = d.querySelector(".toggle-read");
-  if(e.target.matches(".toggle-read")){
-    if ($toggleRead.textContent === "Read") {
-      return $toggleRead.textContent = "Not Read";
-    } else {
-      return $toggleRead.textContent = "Read";
-    }
-  };
-  if(e.target.matches(".add-book-btn")){
-    $modal.classList.add("is-active");
-    $overlay.classList.add("active");
-    return;
-  };
-  if(e.target.matches(".modal-close")){
-    $modal.classList.remove("is-active");
-    $overlay.classList.remove("active");
-    $addBookForm.reset();
-  };
-  if(e.target.matches(".book-remove")){
-
-  }
+$modalBtn.addEventListener("click", e => {
+  $modal.classList.add("is-active");
+  $overlay.classList.add("active");
 });
 
-let myLibrary = [];
-let newArr = [];
-let bookObj = {}; */
-
-// /* form submit */
-/* $addBookForm.addEventListener("submit", e => {
-  const $inputTitle = d.getElementById("input-title").value,
-    $inputAuthor = d.getElementById("input-author").value,
-    $inputPages = d.getElementById("input-pages").value;
-
-
-  e.preventDefault();
-  myLibrary.push({title:$inputTitle, author:$inputAuthor, pages:$inputPages});
-  $addBookForm.reset();
-
+//Close Modal Window
+document.querySelector(".modal-close").addEventListener("click", (e) => {
   $modal.classList.remove("is-active");
   $overlay.classList.remove("active");
+  $addBookForm.reset();
+});
 
-  console.log(myLibrary);
-  addBookToLibrary();
-  myLibrary = [];
-}); */
+// Event: Add New Book
+$addBookForm = document.querySelector(".form-add");
+$addBookForm.addEventListener("submit", (e) => {
+  //Prevent actual Submit
+  e.preventDefault();
+  const $title = document.getElementById("title").value,
+        $author = document.getElementById("author").value,
+        $pages = document.getElementById("pages").value;
+    
+  //Book Instance
+  const book = new Book($title, $author, $pages);
+  addBookToLibrary(book);
 
-/* function addBookToLibrary() {
-  if(myLibrary.length !== 0){
-    myLibrary.forEach(el => {
-      // console.log(el.title);
-      $template.querySelector(".book-title").textContent = el.title;
-      $template.querySelector(".book-author").textContent = el.author;
-      $template.querySelector(".book-pages").textContent = el.pages;
-      $template.querySelector(".toggle-read").dataset.id = el.id;
-      $template.querySelector(".book-remove").dataset.id = el.id;
+  //Close Modal
+  $modal.classList.remove("is-active");
+  $overlay.classList.remove("active");
+  $addBookForm.reset();
 
-      let $clone = d.importNode($template, true);
-      $fragment.appendChild($clone);
-    });
+});
 
-    $bookShelf.appendChild($fragment);
-  }
-  return;
-} */
+
+// Event: Toggle Read
+document.querySelector(".read").addEventListener("click", (e) => {
+  if(e.target.textContent !== "Read"){
+    e.target.textContent = "Read"
+  } else {
+    e.target.textContent = "Not Read"
+  };
+  //console.log(e.target);
+});
+// Event: Remove Book
+document.querySelector(".book-list").addEventListener("click", e => {
+  //console.log(e.target);
+  deleteBook(e.target);
+});

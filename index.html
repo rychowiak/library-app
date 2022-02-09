@@ -14,8 +14,8 @@
     </header>
   </div>
   <main>
-    <div class="add-book-container">
-      <button class="add-book-btn">Add Book</button>
+    <div class="add-book-btn container">
+      <button class="book-btn-modal">Add Book</button>
     </div>
     <div class="modal">
       <div class="modal-header">
@@ -25,16 +25,18 @@
       <hr>
       <div class="modal-content">
         <form class="form-add">
-          <input type="text" id="input-title" placeholder="Title" />
-          <input type="text" id="input-author" placeholder="Author" />
-          <input type="number" id="input-pages" placeholder="Pages" />
-          <input type="submit" value="Add" class="add-new-book">
+          <label for="title"></label>
+          <input type="text" id="title" placeholder="Title" />
+          <label for="author"></label>
+          <input type="text" id="author" placeholder="Author" />
+          <label for="pages"></label>
+          <input type="number" id="pages" placeholder="Pages" />
+          <input type="submit" value="Add Book" class="submit-new-book">
         </form>
       </div>
     </div>
     <div class="overlay"></div>
-    <div class="book-list">
-    </div>
+    <div class="book-list"></div>
   </main>
   <script src="/script.js"></script>
 </body>

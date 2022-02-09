@@ -118,11 +118,11 @@ header {
   border-bottom: solid rgb(70, 70, 70) 2px;
 }
 
-.add-book-container {
+.add-book-btn {
   text-align: center;
   margin-top: 0;
 }
-.add-book-btn {
+.book-btn-modal {
   background: hsl(221, 74%, 32%);
   background-color: var(--btn-color-alt);
   color: rgb(255, 255, 255);
