@@ -4,20 +4,17 @@ function Book(title, author, pages){
   this.author = author;
   this.pages = pages;
 };
+
 // Handle UI Tasks
 const myLibrary = [
   {
     title: "book 1",
     author: "John Doe",
     pages: "123"
-
   }
 ];
 
 const books = myLibrary;
-console.log(books.length);
-if(books.length !== 1){
-}
 
 books.forEach((book) => {
   addBookToLibrary(book);
@@ -77,16 +74,19 @@ $addBookForm.addEventListener("submit", (e) => {
   const $title = document.getElementById("title").value,
         $author = document.getElementById("author").value,
         $pages = document.getElementById("pages").value;
-    
-  //Book Instance
-  const book = new Book($title, $author, $pages);
-  addBookToLibrary(book);
 
-  //Close Modal
-  $modal.classList.remove("is-active");
-  $overlay.classList.remove("active");
-  $addBookForm.reset();
-
+  if($title === "" || $author === "" || $pages === ""){
+    alert("Please fill in all fields");
+  } else {
+    //Book Instance
+    const book = new Book($title, $author, $pages);
+    addBookToLibrary(book);
+  
+    //Close Modal
+    $modal.classList.remove("is-active");
+    $overlay.classList.remove("active");
+    $addBookForm.reset();
+  }
 });
 
 
@@ -97,10 +97,9 @@ document.querySelector(".read").addEventListener("click", (e) => {
   } else {
     e.target.textContent = "Not Read"
   };
-  //console.log(e.target);
 });
+
 // Event: Remove Book
 document.querySelector(".book-list").addEventListener("click", e => {
-  //console.log(e.target);
   deleteBook(e.target);
 });
