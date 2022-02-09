@@ -6,13 +6,7 @@ function Book(title, author, pages){
 };
 
 // Handle UI Tasks
-const myLibrary = [
-  {
-    title: "book 1",
-    author: "John Doe",
-    pages: "123"
-  }
-];
+const myLibrary = [];
 
 const books = myLibrary;
 
@@ -37,7 +31,7 @@ function addBookToLibrary(book){
 
   $bookList.appendChild($card);
 };
-
+// Delete Function
 function deleteBook(el) {
   if(el.classList.contains("remove")) {
     el.parentElement.parentElement.remove();
@@ -91,7 +85,7 @@ $addBookForm.addEventListener("submit", (e) => {
 
 
 // Event: Toggle Read
-document.querySelector(".read").addEventListener("click", (e) => {
+document.querySelector(".book-list").addEventListener("click", (e) => {
   if(e.target.textContent !== "Read"){
     e.target.textContent = "Read"
   } else {
